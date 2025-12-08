@@ -6,7 +6,7 @@ set -euo pipefail
 # ========================================
 MONITORING_USER="apmf"
 COLLECTOR_PATH="/home/apmf/collector"
-SSH_KEY_PATH="/home/apmf/.ssh/apmf_key"
+SSH_KEY_PATH="$HOME/.ssh/apmf_key"
 REPO_URL="https://github.com/bendev99/apmf-collector.git"
 SERVICE_NAME="apmf-collector"
 

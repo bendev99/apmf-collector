@@ -1,6 +1,11 @@
 import requests
 from datetime import datetime
 from config import Config
+from datetime import timezone
+
+def now_utc():
+    """Toujours enregistrer en UTC naïf mais avec timezone aware."""
+    return datetime.now(timezone.utc)
 
 def check_alerts(server_id, metrics, alert_rules):
     """Vérifier si les métriques dépassent les seuils et créer des alertes"""
@@ -70,8 +75,7 @@ def check_alerts(server_id, metrics, alert_rules):
 
 
 def send_alert(server_id, alert_data):
-    from datetime import datetime, timezone
-
+    """Envoyer une alerte au backend"""
     alert_payload = {
         'server_id': server_id,
         'type': alert_data['type'],
@@ -80,7 +84,7 @@ def send_alert(server_id, alert_data):
         'value': float(alert_data['value']),
         'threshold': float(alert_data['threshold']),
         'status': 'active',
-        'created_at': datetime.now(timezone.utc)
+        'created_at': now_utc().isoformat()
     }
 
     try:
@@ -97,6 +101,7 @@ def send_alert(server_id, alert_data):
 
     except Exception as e:
         print(f"Erreur envoi alerte: {e}")
+
 
 def get_severity(value, threshold):
     """Déterminer la sévérité de l'alerte"""

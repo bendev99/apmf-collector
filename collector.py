@@ -110,7 +110,7 @@ def log_error(server_id, ip, error_message):
             'server_id': server_id,
             'ip': ip,
             'error': error_message,
-            'timestamp': datetime.utcnow()
+            'timestamp': datetime.now(timezone.utc)
         }
         errors_collection.insert_one(error_doc)
     except Exception as e:
