@@ -10,8 +10,8 @@ class Config:
         raise SystemExit("Erreur: MONGODB_URI manquant dans .env")
 
     # Backend API
-    BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:5000")
-    # BACKEND_URL = os.getenv('BACKEND_URL', 'https://projet-apmf-api.onrender.com')
+    # BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:5000")
+    BACKEND_URL = os.getenv('BACKEND_URL', 'https://projet-apmf-api.onrender.com')
 
     # SSH
     SSH_USER = os.getenv("SSH_USER", "apmf")
